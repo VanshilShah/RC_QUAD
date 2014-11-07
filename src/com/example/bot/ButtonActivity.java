@@ -14,8 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -56,6 +56,9 @@ public class ButtonActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 		if (D)
 			Log.e(TAG, "+++ ON CREATE +++");
@@ -79,6 +82,7 @@ public class ButtonActivity extends Activity {
 			finish();
 			return;
 		}
+
 	}
 
 	@Override
@@ -229,7 +233,7 @@ public class ButtonActivity extends Activity {
 
 		}
 	}
-
+/*
 	private final void setStatus(int resId) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			final ActionBar actionBar = getActionBar();
@@ -242,7 +246,7 @@ public class ButtonActivity extends Activity {
 			final ActionBar actionBar = getActionBar();
 			actionBar.setSubtitle(subTitle);
 		}
-	}
+	}*/
 
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler mHandler = new Handler() {
@@ -252,7 +256,7 @@ public class ButtonActivity extends Activity {
 			case MESSAGE_STATE_CHANGE:
 				if (D)
 					Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
-				switch (msg.arg1) {
+				/*switch (msg.arg1) {
 				case BluetoothChatService.STATE_CONNECTED:
 					setStatus(getString(R.string.title_connected_to,
 							mConnectedDeviceName));
@@ -264,7 +268,7 @@ public class ButtonActivity extends Activity {
 				case BluetoothChatService.STATE_NONE:
 					setStatus(R.string.title_not_connected);
 					break;
-				}
+				}*/
 				break;
 			case MESSAGE_DEVICE_NAME:
 				// save the connected device's name
@@ -317,7 +321,7 @@ public class ButtonActivity extends Activity {
 		mChatService.connect(device, secure);
 	}
 
-	@Override
+	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.button, menu);
@@ -326,7 +330,7 @@ public class ButtonActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent serverIntent = null;
+		//Intent serverIntent = null;
 		switch (item.getItemId()) {
 		case R.id.secure_connect_scan:
 			// Launch the DeviceListActivity to see devices and do scan
@@ -339,6 +343,6 @@ public class ButtonActivity extends Activity {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 }
